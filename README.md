@@ -1,0 +1,2 @@
+# easywallet
+Team money manager
