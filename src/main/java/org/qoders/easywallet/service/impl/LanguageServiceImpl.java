@@ -7,7 +7,7 @@ import org.qoders.easywallet.service.LanguageService;
 import org.springframework.stereotype.Service;
 
 /**
- * Service for Language, i18n
+ * Service for Language, i18n support
  * @author Nhu Trinh
  *
  */
@@ -15,7 +15,8 @@ import org.springframework.stereotype.Service;
 public class LanguageServiceImpl implements LanguageService  {
 	
 	/**
-	 * Generate map<language_key, Language_name> object. Temporary in memory implementation.
+	 * Generate map<language_key, Language_name> object for all available languages. 
+	 * Temporary in memory implementation.
 	 * TODO: Get settings from context
 	 */
 	public Map<String, String> getAvailableLanguage() {

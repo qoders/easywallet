@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 	
+	/*
+	 * Get single instance of language service using auto wire
+	 */
 	@Autowired
 	LanguageService languageService;
 
