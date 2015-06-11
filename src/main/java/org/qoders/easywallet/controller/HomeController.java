@@ -4,7 +4,9 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
+import org.qoders.easywallet.domain.Receipt;
 import org.qoders.easywallet.service.LanguageService;
 import org.qoders.easywallet.service.ReceiptScanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +28,6 @@ public class HomeController {
 	@Autowired
 	LanguageService languageService;
 	
-	@Autowired
-	ReceiptScanService receiptScanner;
-	
-	@Autowired 
-	ServletContext servletContext;
 
 	/**
 	 * Serve request from home, index page /
@@ -41,11 +38,9 @@ public class HomeController {
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) {			
 		Map<String, String> languages = languageService.getAvailableLanguage();
+		
 		model.addAttribute("languages", languages);
 		model.addAttribute("language", locale.getDisplayLanguage(locale));
-		
-		//Test receipt
-		//receiptScanner.getReceiptFromImage(servletContext.getRealPath("/WEB-INF/belated-receipt.jpg"));
 		
 		return "index";
 	}

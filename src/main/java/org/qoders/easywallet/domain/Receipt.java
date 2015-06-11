@@ -13,7 +13,7 @@ public class Receipt implements Serializable {
 	private String title;
 	private String description;
 	private Double total;
-	private String items;
+	private String imagePath;
 	
 	public String getTitle() {
 		return title;
@@ -33,10 +33,11 @@ public class Receipt implements Serializable {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
-	public String getItems() {
-		return items;
+	
+	public String getImagePath() {
+		return imagePath;
 	}
-	public void setItems(String items) {
-		this.items = items;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }

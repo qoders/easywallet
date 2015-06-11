@@ -3,6 +3,8 @@ package org.qoders.easywallet.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -17,6 +19,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.qoders.easywallet.domain.Receipt;
 import org.qoders.easywallet.service.ReceiptScanService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -44,6 +47,7 @@ public class ReceiptScanOcrapiserviceImpl implements ReceiptScanService {
 	
 	/**
 	 * ocrapiservice API key, obtain in http://ocrapiservice.com/myaccount/dashboard/
+	 * TODO: Change to configurable apiKey
 	 */
 	private String apiKey = "PstHTpvkpK";
 	
@@ -56,17 +60,20 @@ public class ReceiptScanOcrapiserviceImpl implements ReceiptScanService {
 	 * This class will parse this response text and create Receipt object
 	 */
 	private String responseText;
-
 	
+	// Create a Pattern object for detect total amount in receipt
+    private final Pattern totalr = Pattern.compile("total\\s([0-9]*\\.?[0-9]*)", 
+    		Pattern.CASE_INSENSITIVE);
 	
 	/*
 	 * Send image to OCR service and read response.
-	 * 
+	 * TODO: Set cache to file hash (Prevent duplicate file upload)
 	 * @param language The image text language.
 	 * @param filePath The image absolute file path.
 	 *  
 	 */
-	private void sendImage(String language, String filePath) throws ClientProtocolException, IOException {
+	@Cacheable(value="OCRReceipt", key="#language + '_' + #filePath")
+	private String sendImage(String language, String filePath) throws ClientProtocolException, IOException {
 		try (CloseableHttpClient  httpclient = HttpClientBuilder.create().build()){
 			HttpPost httppost = new HttpPost(SERVICE_URL);
 	
@@ -93,31 +100,41 @@ public class ReceiptScanOcrapiserviceImpl implements ReceiptScanService {
 		    	}
 			}
 			this.setResponseCode(response.getStatusLine().getStatusCode());
-			this.setResponseText(sb.toString());
+			String data = sb.toString().trim();
+			data = data.replace("﻿", "");//Remove BOM that returned from server
+			this.setResponseText(data);
+			return data;
 		}catch (Exception e) {
 			//Handle
 			e.printStackTrace();
 		}
+		this.setResponseText(null);
+		return null;
 	}
-	
-	
-	
-	
 	
 	@Override
 	public Receipt getReceiptFromImage(String imagePath) {
 		try {
-			sendImage("en", imagePath);
-			System.out.println(this.getResponseText());
-			
-			return new Receipt();
+			String data = sendImage("en", imagePath);
+			if (data!=null){
+				Receipt receipt =  new Receipt();
+				receipt.setTitle(data.substring(0, data.indexOf("\n")));
+				receipt.setDescription(data);
+				
+				Matcher m = totalr.matcher(data);
+				if (m.find()){
+					receipt.setTotal(Double.parseDouble(m.group(1)));
+				}else{
+					receipt.setTotal(0.0);
+				}
+				return receipt;
+			}		
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			return null;
 		} catch (IOException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return null;
 	}
 
 
