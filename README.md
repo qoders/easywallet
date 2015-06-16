@@ -1,2 +1,4 @@
 # easywallet
-Team money manager
+
+*Setup Database*
+Open database.properties and change settings

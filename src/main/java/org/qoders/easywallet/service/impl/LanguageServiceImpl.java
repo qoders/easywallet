@@ -1,6 +1,5 @@
 package org.qoders.easywallet.service.impl;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.qoders.easywallet.service.LanguageService;
@@ -11,20 +10,21 @@ import org.springframework.stereotype.Service;
  * @author Nhu Trinh
  *
  */
-@Service
 public class LanguageServiceImpl implements LanguageService  {
 	
+	private Map<String, String> enabledLanguage;
 	/**
 	 * Generate map<language_key, Language_name> object for all available languages. 
-	 * Temporary in memory implementation.
-	 * TODO: Get settings from context
 	 */
 	public Map<String, String> getAvailableLanguage() {
-		Map<String, String> languages = new HashMap<String, String>();
-		languages.put("en", "English");
-		languages.put("vi", "Tiếng Việt");
-		languages.put("ne", "Nepali");
-		return languages;
+		return enabledLanguage;
+	}
+	
+	public Map<String, String> getEnabledLanguage() {
+		return enabledLanguage;
+	}
+	public void setEnabledLanguage(Map<String, String> enabledLanguage) {
+		this.enabledLanguage = enabledLanguage;
 	}
 	
 }
