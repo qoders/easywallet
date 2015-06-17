@@ -74,7 +74,7 @@
 	                        <security:authentication property="principal.lastName" /></a>
 	                    </li>
 	                    <li>
-	                        <a class="page-scroll" href="<spring:url value="/doLogout" />">Logout</a>
+	                        <a class="page-scroll" href="<spring:url value="/logout" />">Logout</a>
 	                    </li>
 	                </ul>
 	            </div>

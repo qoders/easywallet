@@ -26,8 +26,8 @@
 		<security:form-login login-page="/login"
 			default-target-url="/" always-use-default-target="false"
 			authentication-failure-url="/loginfailed" />
-		<security:logout logout-success-url="/logout"
-			logout-url="/doLogout" />
+		<security:logout logout-success-url="/loggedout"
+			logout-url="/logout" />
 	</security:http>
 	
 	<bean id="myUserDetailService" class="org.qoders.easywallet.service.impl.UserDetailServiceImpl"></bean>

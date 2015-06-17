@@ -20,9 +20,9 @@ public class AuthenticateController {
  
 	}
  
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	@RequestMapping(value="/loggedout", method = RequestMethod.GET)
 	public String logout(Model model) {
- 		return "redirect:/welcome";
+ 		return "redirect:/";
  	}
 	
 }
