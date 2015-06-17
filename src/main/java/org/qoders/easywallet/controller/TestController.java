@@ -13,9 +13,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Just for testing purpose
@@ -73,6 +75,15 @@ public class TestController {
 		mail.sendHtmlMail("spyjamesbond0072003@gmail.com", "Hi new member", "", 
 				"emails/welcome.vm", mailModel );
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/testBcrypt")
+	public @ResponseBody String testBcrypt(){
+		BCryptPasswordEncoder b = new BCryptPasswordEncoder();
+		//Check match
+		//b.matches(rawPassword, encodedPassword)
+		System.out.print(b.encode("admin"));
+		return b.encode("admin");
 	}
 	
 }

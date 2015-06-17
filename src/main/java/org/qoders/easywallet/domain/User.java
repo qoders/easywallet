@@ -44,6 +44,8 @@ public class User implements UserDetails {
 	private String firstName;
 	private String lastName;
 	
+	private String gender;
+	
 	@OneToMany(fetch=FetchType.EAGER)
 	private Set<Authority> authorities;
 	
@@ -140,6 +142,14 @@ public class User implements UserDetails {
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	
