@@ -1,0 +1,2 @@
+Hi <b>${user.firstName} ${user.lastName}</b><br/>
+Click <a href="http://localhost:8080/verifyUser/${user.email}/${code}/">here to activate</a>

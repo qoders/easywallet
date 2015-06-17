@@ -57,7 +57,7 @@
 	                        <a class="page-scroll" href="<spring:url value="/login" />">Login</a>
 	                    </li>
 	                    <li>
-	                        <a class="page-scroll" href="<spring:url value="/login" />">Sign Up</a>
+	                        <a class="page-scroll" href="<spring:url value="/signup" />">Sign Up</a>
 	                    </li>
 	                </ul>
 	            </div>
