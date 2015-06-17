@@ -1,10 +1,15 @@
 package org.qoders.easywallet.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.qoders.easywallet.domain.User;
+import org.qoders.easywallet.service.EmailService;
 import org.qoders.easywallet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +28,9 @@ public class TestController {
 	@Autowired
 	UserService uService;
 	
+	@Autowired
+	ServletContext context;
+	
 	@RequestMapping(value="/testUserAdd")
 	public String testAddUser(Model model){
 		
@@ -37,6 +45,34 @@ public class TestController {
 		};
 		model.addAttribute("users", users);
 		return "testAdd";
+	}
+	
+	//Use this when user activate their email
+	@RequestMapping(value="/autoLogin")
+	public String testAutoLogin(Model model){
+		User james = uService.findUserByEmail("spyjamesbond0072003@gmail.com");
+		Authentication authentication =  new UsernamePasswordAuthenticationToken(james, null, james.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		return "redirect:/";
+	}
+	
+	@Autowired
+	EmailService mail;
+	
+	@RequestMapping(value="/testMail")
+	public String testSendMail(){
+		mail.sendMail("spyjamesbond0072003@gmail.com", "Hello", "From Nhu Trinh");
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/testHtmlMail")
+	public String testSendHtmlMail(){
+		HashMap<String, Object> mailModel = new HashMap<String, Object>();
+		mailModel.put("firstName", "Nhu");
+		mailModel.put("lastName", "Trinh");
+		mail.sendHtmlMail("spyjamesbond0072003@gmail.com", "Hi new member", "", 
+				"emails/welcome.vm", mailModel );
+		return "redirect:/";
 	}
 	
 }
