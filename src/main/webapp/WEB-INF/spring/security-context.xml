@@ -21,7 +21,7 @@
 	<security:http use-expressions="true">
 		
 		<security:intercept-url pattern="/testUserAdd"
-			access="hasRole('ROLE_ADMIasdsadasdaN')" />
+			access="isAuthenticated()" />
 
 		<security:form-login login-page="/login"
 			default-target-url="/" always-use-default-target="false"
@@ -33,7 +33,9 @@
 	<bean id="myUserDetailService" class="org.qoders.easywallet.service.impl.UserDetailServiceImpl"></bean>
 	
 	<security:authentication-manager>
-		<security:authentication-provider user-service-ref="myUserDetailService"/>	
+		<security:authentication-provider user-service-ref="myUserDetailService">
+			<security:password-encoder hash="bcrypt" />
+		</security:authentication-provider>
 		<!--security:authentication-provider>
 			<security:password-encoder hash="bcrypt" />
 			<security:jdbc-user-service

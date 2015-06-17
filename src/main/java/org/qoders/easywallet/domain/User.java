@@ -1,6 +1,5 @@
 package org.qoders.easywallet.domain;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -128,19 +127,19 @@ public class User implements UserDetails {
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 	
