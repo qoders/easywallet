@@ -93,7 +93,7 @@
 	            <div class="form-body">
 	            	<c:if test="${not empty error}">
 						<div class="alert alert-danger">
-							<spring:message code="AbstractUserDetailsAuthenticationProvider.badCredentials"/><br />
+							${error}
 						</div>
 					</c:if>
 	                <div class="form-group">

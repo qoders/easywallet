@@ -1,4 +1,4 @@
-package org.qoders.easywallet.restcontroller;
+package org.qoders.exception.handler;
 
 import org.qoders.easywallet.domain.JsonError;
 import org.qoders.exception.RestException;

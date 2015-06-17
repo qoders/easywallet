@@ -25,10 +25,22 @@
 
 		<security:form-login login-page="/login"
 			default-target-url="/" always-use-default-target="false"
-			authentication-failure-url="/loginfailed" />
+			authentication-failure-handler-ref="authenticationFailureHandler" />
 		<security:logout logout-success-url="/loggedout"
 			logout-url="/logout" />
 	</security:http>
+	
+	<bean id="authenticationFailureHandler"
+	    class="org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler">
+	    <property name="exceptionMappings">
+	        <props>
+	            <prop key="org.springframework.security.authentication.BadCredentialsException">/login-fail/BadCredentials</prop>
+	            <prop key="org.springframework.security.authentication.CredentialsExpiredException">/login-fail/CredentialsExpired</prop>
+	            <prop key="org.springframework.security.authentication.LockedException">/login-fail/AccountLocked</prop>
+	            <prop key="org.springframework.security.authentication.DisabledException">/login-fail/AccountDisabled</prop>
+	        </props>
+	    </property>
+	</bean>
 	
 	<bean id="myUserDetailService" class="org.qoders.easywallet.service.impl.UserDetailServiceImpl"></bean>
 	
