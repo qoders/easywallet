@@ -1,19 +1,45 @@
 package org.qoders.easywallet.domain;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Simple receipt object
  * @author Nhu Trinh
  *
  */
+@Entity
+@Table(name="receipt")
 public class Receipt implements Serializable {
 	private static final long serialVersionUID = -3143441576750543429L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
+	@ManyToOne
+	private User owner;
+	
+	@Column(nullable=false, length=255)
 	private String title;
+	
+	@Column(nullable=true, length=2000)
 	private String description;
+	
 	private Double total;
 	private String imagePath;
+	
+	@OneToMany
+	private List<Companion> companions;
 	
 	public String getTitle() {
 		return title;
@@ -39,5 +65,23 @@ public class Receipt implements Serializable {
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	
+	public User getOwner() {
+		return owner;
+	}
+	
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+	public List<Companion> getCompanions() {
+		return companions;
+	}
+	public void setCompanions(List<Companion> companions) {
+		this.companions = companions;
+	}
+	
+	public void addCompanion(Companion companion){
+		this.companions.add(companion);
 	}
 }

@@ -4,18 +4,23 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.validation.GroupSequence;
 
+import org.qoders.easywallet.domain.Group;
 import org.qoders.easywallet.domain.User;
 import org.qoders.easywallet.service.EmailService;
+import org.qoders.easywallet.service.GroupService;
 import org.qoders.easywallet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Just for testing purpose
@@ -29,7 +34,11 @@ public class TestController {
 	UserService uService;
 	
 	@Autowired
+	GroupService gService;
+	
+	@Autowired
 	ServletContext context;
+
 	
 	@RequestMapping(value="/testUserAdd")
 	public String testAddUser(Model model){
@@ -75,4 +84,26 @@ public class TestController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="/testBcrypt")
+	public @ResponseBody String testBcrypt(){
+		BCryptPasswordEncoder b = new BCryptPasswordEncoder();
+		//Check match
+		//b.matches(rawPassword, encodedPassword)
+		System.out.print(b.encode("admin"));
+		return b.encode("admin");
+	}
+	
+	@RequestMapping(value="/testGetGroupForUser")
+	public @ResponseBody String testGetGroupForUser(Model model){
+		User nhu = uService.findUserByUsername("nhutrinh");
+		List<Group> nhuGroups = gService.findGroupByUser(nhu);
+		for(Group g : nhuGroups){
+			System.out.println(g.getTitle());
+			for(User u : g.getMembers()){
+				System.out.println(u);
+			}
+		}
+		return "";
+	}
+
 }

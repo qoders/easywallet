@@ -1,0 +1,2 @@
+Hi <b>${firstName} ${lastName}</b><br/>
+This email was successfully sent!!!
