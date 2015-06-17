@@ -3,12 +3,7 @@ package org.qoders.easywallet.controller;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-
-import org.qoders.easywallet.domain.Receipt;
 import org.qoders.easywallet.service.LanguageService;
-import org.qoders.easywallet.service.ReceiptScanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,6 +38,11 @@ public class HomeController {
 		model.addAttribute("language", locale.getDisplayLanguage(locale));
 		
 		return "index";
+	}
+	
+	@RequestMapping(value="/upload/")
+	public String upload(){
+		return "upload";
 	}
 	
 }
