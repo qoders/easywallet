@@ -2,10 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
@@ -77,4 +79,18 @@
 			</map>
 		</property>
 	</bean>
+	 
+	<!--util:properties id="exposedConfig" location="classpath:config.properties"/-->
+	<!--bean
+	    class="org.springframework.web.context.support.ServletContextAttributeExporter">
+	    <property name="attributes">
+	        <map>
+	        	<entry key="springExportedConfig">
+	               <ref bean="exposedConfig" />
+	            </entry>
+	             Add param to jsp>
+	            <entry key="enableBootstrap" value="false" />
+	        </map>
+	    </property>
+	</bean-->
 </beans>
