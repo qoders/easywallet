@@ -32,6 +32,7 @@ public class TestController {
 	
 	@Autowired
 	ServletContext context;
+
 	
 	@RequestMapping(value="/testUserAdd")
 	public String testAddUser(Model model){
@@ -85,5 +86,5 @@ public class TestController {
 		System.out.print(b.encode("admin"));
 		return b.encode("admin");
 	}
-	
+
 }
