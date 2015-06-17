@@ -523,3 +523,59 @@ footer p {
     color: #aaa;
     font-size: 13px;
 }
+.receipt .btn {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    margin-top: -16px;
+}
+
+.receipt {
+    position: relative;
+    padding-right: 115px;
+}
+
+div#sidebar {
+    background: #fafafa;
+}
+
+.group,.member {
+    position: relative;
+    padding-right: 55px;
+}
+.group {
+    cursor: pointer;
+}
+.group:hover {
+    background:#eee;
+}
+.group .group-title {
+    font-weight: bold;
+}
+.group .members {
+    display: none;
+}
+.group .members.active {
+    display: block;
+}
+
+.group a.btn-add-group, .member a.btn-add-member {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+.companions span.close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: #FF0000;
+    opacity: 1;
+}
+.companions .name {
+    font-weight: bold;
+    margin: 5px 0px;
+}
+.companions {
+    position: relative;
+}
