@@ -1,6 +1,7 @@
 package org.qoders.easywallet.restcontroller;
 
 import org.qoders.easywallet.domain.JsonError;
+import org.qoders.exception.RestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class RestExceptionControllerAdvise {
 	
 	@ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
-	@ExceptionHandler(Exception.class)
+	@ExceptionHandler(RestException.class)
 	public @ResponseBody JsonError internalServerError(Exception e) {
 		return new JsonError(e);
     }
