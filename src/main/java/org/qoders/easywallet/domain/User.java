@@ -111,7 +111,9 @@ public class User implements UserDetails {
 	}
 
 	public String getFirstName() {
-		return firstName;
+		if(firstName!=null)
+			return firstName;
+		return "";
 	}
 
 	public void setFirstName(String firstName) {
@@ -119,7 +121,9 @@ public class User implements UserDetails {
 	}
 
 	public String getLastName() {
-		return lastName;
+		if(lastName!=null)
+			return lastName;
+		return "";
 	}
 
 	public void setLastName(String lastName) {
@@ -152,7 +156,9 @@ public class User implements UserDetails {
 		this.gender = gender;
 	}
 	
-	
+	public String toString(){
+		return this.getFirstName() + " " + this.getLastName();
+	}
 
 	
 }
