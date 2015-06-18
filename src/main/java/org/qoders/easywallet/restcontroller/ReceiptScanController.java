@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "api/receipt")
-public class ReceiptController {
+public class ReceiptScanController {
 	@Autowired
 	ReceiptScanService receiptScanner;
 	

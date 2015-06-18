@@ -61,40 +61,14 @@
                     <div class="form-wrap" style="margin:20px 0px;">
                         <form:form modelAttribute="newgroup" method="POST">
                             <div class="form-heading">
-                                <h2>Create Group</h2>
+                                <h2>List of Groups</h2>
                             </div>
-                            <div class="form-body">
-                                <div class="form-group">
-                                    <label for="">Group Name</label>
-                                    <input type="text" name="title" class="form-control" id="group" placeholder="e.g. MUM Ko Boka Haru">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Add Members</label>
-                                    <input type="text" class="form-control" id="members-search-input" placeholder="Type to search members">
-                                    <div class="search-result">
-                                    	<ul>
-                                    		<!-- <li>
-	                                    		<span class="name">Bishwojit Nepali</span>
-	                                    		<span class="email">bishwojit.nepali@gmail.com</span>
-                                    		</li>
-                                    		<li>
-	                                    		<span class="name">Manoj Nepali</span>
-	                                    		<span class="email">manojgautam@gmail.com</span>
-                                    		</li> -->
-                                    	</ul>
-                                    </div>
-                                </div>
-                                <div class="user-display-wrap">
-                                	<ul id="group-members">
-                                		<!-- <li>Bishowjit Nepali
-                                			<input type="hidden" name="members[]"/>
-                                			<span class="remove">&times;</span>
-                                		</li> -->
-                                	</ul>
-                                </div>
-                                
-                                <button type="submit" class="btn btn-primary">Save Group</button>
-                            </div>
+                            
+                            <ul>
+                            <c:forEach items="${groupList}" var="group">
+                            	<li>${group.title}</li>
+                            </c:forEach>
+                            </ul>
                             <div class="form-footer"></div>
                         </form:form>
                     </div>
