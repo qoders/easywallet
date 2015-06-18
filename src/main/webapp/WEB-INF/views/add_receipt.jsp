@@ -59,44 +59,44 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-wrap" style="margin:20px 0px;">
-                        <form>
+                        <form:form modelAttribute="newreceipt" method="POST">
                             <div class="form-heading">
                                 <h2>Create Receipt</h2>
                             </div>
                             <div class="form-body">
                                 <div class="form-group">
                                     <label for="">Title</label>
-                                    <input type="text" class="form-control" id="title" placeholder="eg. Mashu Bhaat Party">
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="eg. Mashu Bhaat Party">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Total</label>
-                                    <input type="text" class="form-control" id="total" placeholder="">
+                                    <input type="text" class="form-control" name="total" id="total" placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Description</label>
-                                    <textarea type="text" class="form-control" id="description"></textarea>
+                                    <textarea type="text" class="form-control" name="description"  id="description"></textarea>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="">Date</label>
-                                    <input type="date" class="form-control" id="date" placeholder="">
-                                </div>
+                                    <input type="date" class="form-control" name="date" id="date" placeholder="">
+                                </div> -->
                                 <hr>
                                 <h3>Companions</h3>
                                 <div class="added-companions">
-                                    <div class="companions">
+                                    <!-- <div class="companions">
                                         <div class="name">Users FirstLast Name</div>
-                                        <input type="hidden" value="2" name="companions[]"/>
+                                        <input type="hidden" value="2" name="companions[0]"/>
                                         <span class="close" title="Remove">&times;</span>
-                                        <input class='form-control' type="number" name="amount[]" placeholder="Amount Spent"/>
-                                        <textarea class="form-control" name="[description]" placeholder="Description of Expense"></textarea>
-                                    </div>
+                                        <input class='form-control' type="number" name="companions[0].amount" placeholder="Amount Spent"/>
+                                        <textarea class="form-control" name="companions[0].description" placeholder="Description of Expense"></textarea>
+                                    </div> -->
                                 </div>
                                 <hr>
                                 <button type="button" class="btn btn-success" id="add-companions">Add Companions</button>
                                 <button type="submit" class="btn btn-primary">Save Group</button>
                             </div>
                             <div class="form-footer"></div>
-                        </form>
+                        </form:form>
                     </div>
 
                 </div>
@@ -110,9 +110,7 @@
                             <div class="group-title">Boka Group 1</div>
                             <div class="members">
                                 <ul>
-                                    <li class="member" ><span>Nhu Trin</span> <a href="#" class="btn-add-member" data-member-id = "15">Add</a></li>
-                                    <li class="member"><span>Bishwojit Nepali</span> <a href="#" class="btn-add-member" data-member-id = "12">Add</a></li>
-                                    <li class="member"><span>Binod Gurung</span> <a href="#" class="btn-add-member" data-member-id = "14">Add</a></li>
+                                    <li class="member" ><span>Nhu Trin</span> <a href="#" class="btn-add-member" data-member-email = "nhutrin@gmail.com">Add</a></li>
                                 </ul>
                             </div>
                             <a href="#" class="btn-add-group" data-group-id="2">Add</a>
@@ -121,9 +119,7 @@
                             <div class="group-title">Kabo Group</div>
                             <div class="members">
                                 <ul>
-                                    <li class="member"><span>Binod Gurung</span> <a href="#" class="btn-add-member" data-member-id = "14">Add</a></li>
-                                    <li class="member" ><span>Nhu Trin</span> <a href="#" class="btn-add-member" data-member-id = "15">Add</a></li>
-                                    <li class="member"><span>Manoj Gautam</span> <a href="#" class="btn-add-member" data-member-id = "13">Add</a></li>
+                                    <li class="member"><span>Binod Gurung</span> <a href="#" class="btn-add-member" data-member-email = "tamu.bnod1@gmail.com">Add</a></li>
                                 </ul>
                             </div>
                             <a href="#" class="btn-add-group" data-group-id="2">Add</a>

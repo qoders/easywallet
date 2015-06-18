@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,7 @@ public class Receipt implements Serializable {
     @Column(name="receipt_date", nullable=false)
 	private Date date;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Companion> companions;
 	
 	public String getTitle() {

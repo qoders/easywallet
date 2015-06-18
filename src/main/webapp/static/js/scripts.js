@@ -25,11 +25,12 @@ $(function () {
         members.find('li').each(function () {
 
             var member_name = $(this).children('span').html();
-            var member_id = $(this).children('a').attr('data-member-id');
-            var inarray = $.inArray(member_id, added_members);
+            var member_email = $(this).children('a').attr('data-member-email');
+            var inarray = $.inArray(member_email, added_members);
+            var no_of_members_added = $(".added-companions > div").length;
             if (inarray == -1) {
-                var member_div = "<div class='companions'><div class='name'>"+member_name+"</div><input type='hidden' value='"+member_id+"' name='companions[]'/><span class='close' title='Remove'>&times;</span><input class='form-control' type='number' name='amount[]' placeholder='Amount Spent'/><textarea class='form-control' name='description[]' placeholder='Description of Expense'></textarea></div>"
-                added_members.push(member_id);
+                var member_div = "<div class='companions'><div class='name'>"+member_name+"</div><input type='hidden' value='"+member_email+"' name='companions["+no_of_members_added+"].companion.email'/><span class='close' title='Remove'>&times;</span><input class='form-control' type='number' name='companions["+no_of_members_added+"].amount' placeholder='Amount Spent'/><textarea class='form-control' name='companions["+no_of_members_added+"].description' placeholder='Description of Expense'></textarea></div>"
+                added_members.push(member_email);
                 companions_div.append($(member_div));
             }
 
@@ -42,11 +43,12 @@ $(function () {
         //loop through members
         var companions_div = $(".added-companions");
         var member_name = $(this).siblings('span').html();
-        var member_id = $(this).attr('data-member-id');
-        var inarray = $.inArray(member_id, added_members)
+        var member_email = $(this).attr('data-member-id');
+        var no_of_members_added = $(".added-companions > div").length;
+        var inarray = $.inArray(member_email, added_members)
         if (inarray == -1) {
-            var member_div = "<div class='companions'><div class='name'>"+member_name+"</div><input type='hidden' value='"+member_id+"' name='companions[]'/><span class='close' title='Remove'>&times;</span><input class='form-control' type='number' name='amount[]' placeholder='Amount Spent'/><textarea class='form-control' name='description[]' placeholder='Description of Expense'></textarea></div>"
-            added_members.push(member_id);
+            var member_div = "<div class='companions'><div class='name'>"+member_name+"</div><input type='hidden' value='"+member_email+"' name='companions["+no_of_members_added+"].companion.email'/><span class='close' title='Remove'>&times;</span><input class='form-control' type='number' name='companions["+no_of_members_added+"].amount' placeholder='Amount Spent'/><textarea class='form-control' name='companions["+no_of_members_added+"].description' placeholder='Description of Expense'></textarea></div>"
+            added_members.push(member_email);
             companions_div.append($(member_div));
         }
         //console.log('test');

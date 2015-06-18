@@ -64,10 +64,10 @@ public class GroupController {
 		newgroup.setMembers(list);
 		groupService.createGroup(newgroup);
 		
-		List <Group> groupList = groupService.findGroupByUser(user);
+		
 		// get all groups owned or member of that group
-		redirect.addFlashAttribute("groupList", groupList);
-		return "redirect:/group/list";
+		//redirect.addFlashAttribute("groupList", groupList);
+		return "redirect:/group";
 		
 	}
 	@RequestMapping(value="/search-member", method=RequestMethod.GET)
@@ -80,11 +80,15 @@ public class GroupController {
 		
 	}
 	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String listGroup(Model model, @ModelAttribute (value="newgroup") Group newgroup)
 	{
-		System.out.println(newgroup.getTitle());
-		model.addAttribute("group",newgroup);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User)authentication.getPrincipal();
+		
+		List <Group> groupList = groupService.findGroupByUser(user);
+		
+		model.addAttribute("groupList",groupList);
 		return "list_groups";
 		
 	}
