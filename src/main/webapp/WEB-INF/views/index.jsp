@@ -91,7 +91,7 @@
 	    <header>
 	        <div class="header-content">
 	            <div class="header-content-inner">
-	                <h1>Manage all your expenses effortlessly with EasyWallet</h1>
+	                <h1><spring:message code="Pages.Index.Headline" text="Manage all your expenses effortlessly with EasyWallet"/></h1>
 	                <hr>
 	                <!--<p>EasyWallet will act as your personal wallet and will help in managing the group expenses and settlements effortlessly. Sign Up now to get your wallet and split expenses in group easily.</p>-->
 	                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
