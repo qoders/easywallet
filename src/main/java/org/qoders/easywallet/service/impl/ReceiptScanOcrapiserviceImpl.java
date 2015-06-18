@@ -106,7 +106,7 @@ public class ReceiptScanOcrapiserviceImpl implements ReceiptScanService {
 			return data;
 		}catch (Exception e) {
 			//Handle
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		this.setResponseText(null);
 		return null;
@@ -130,9 +130,9 @@ public class ReceiptScanOcrapiserviceImpl implements ReceiptScanService {
 				return receipt;
 			}		
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return null;
 	}

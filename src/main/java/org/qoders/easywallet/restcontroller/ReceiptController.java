@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 
 import org.qoders.easywallet.domain.Receipt;
 import org.qoders.easywallet.service.ReceiptScanService;
+import org.qoders.exception.RestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,12 +34,13 @@ public class ReceiptController {
 	 * 
 	 * @param receipPath the receipt image's relative path to, begin with {upload-user-id}/{image-name}.jpg
 	 * @return
+	 * @throws RestException 
 	 */
 	@RequestMapping(value="/scan", method=RequestMethod.POST)
 	public ResponseEntity<Receipt> scan(@RequestParam(value="receiptPath") String receiptPath){
 		//Return object
 		Receipt receipt;
-		//Security: hecker may pass .. in path to exploit data, remove it
+		//Security: hacker may pass .. in path to exploit data, remove it
 		receiptPath = receiptPath.replace("..", "");
 		String fullPath = servletContext.getRealPath("/media/receipts/" + receiptPath);
 		//Check for file exists
@@ -47,6 +49,7 @@ public class ReceiptController {
 			receipt = receiptScanner.getReceiptFromImage(fullPath);
 			return new ResponseEntity<Receipt>(receipt, HttpStatus.OK);
 		}else{
+			//throw new RestException("Scan image not found");
 			return new ResponseEntity<Receipt>(HttpStatus.NOT_FOUND);
 		}
 	}

@@ -578,6 +578,7 @@ div#sidebar {
 }
 .companions {
     position: relative;
+
 }
 .form-group {
 	position:relative;
@@ -633,4 +634,3 @@ div#sidebar {
 ul#group-members {
   padding: 20px 0px;
   list-style: none;
-}

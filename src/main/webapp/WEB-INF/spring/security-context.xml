@@ -20,7 +20,9 @@
 	<!-- use-expressions enables URL level authorization -->
 	<security:http use-expressions="true">
 		
-		<security:intercept-url pattern="/testUserAdd"
+		<security:intercept-url pattern="/dashboard**"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/group**"
 			access="isAuthenticated()" />
 
 		<security:form-login login-page="/login"
