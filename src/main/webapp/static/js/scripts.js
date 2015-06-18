@@ -90,11 +90,18 @@ $(function () {
     			if (response.userlist.length == 0) {
     				list += "<li class='no-data'>No data to show</li>";
     			}
+    			var addedMembersEmail = [];
+    			$.each($("#group-members li"),function () {
+    	    		var tmpEmail = $(this).children('input').val();
+    	    		addedMembersEmail.push(tmpEmail);
+    	    	});
     			$.each(response.userlist, function(index, user) {
     			    var userEmail = user.email;
     			    var userName = user.firstName + ' ' + user.lastName;
     			    userEmail = $.trim(userEmail);
-    			    list += "<li><span class='name'>"+userName+"</span> (<span class='email'>"+userEmail+"</span>)</li>";
+    			    if ($.inArray(userEmail,addedMembersEmail) == -1) {
+    			    	list += "<li><span class='name'>"+userName+"</span> (<span class='email'>"+userEmail+"</span>)</li>";
+    			    }
     			});
     			
     			resultWrap.html(list);
@@ -115,6 +122,7 @@ $(function () {
     	var groupMember = $("#group-members");
     	var email = $(this).children('span.email').text();
     	var name = $(this).children('span.name').text();
+    	
     	
     	var member = "<li>"+name+"<input type='hidden' class='count_member' name='members["+no_of_members+"].email' value='"+email+"' /><span class='remove'>&times;</span></li>";
     	groupMember.append(member);
