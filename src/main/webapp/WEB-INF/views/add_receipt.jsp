@@ -95,7 +95,6 @@
                                     </div> -->
                                 </div>
                                 <hr>
-                                <button type="button" class="btn btn-success" id="add-companions">Add Companions</button>
                                 <button type="submit" class="btn btn-primary">Save Group</button>
                             </div>
                             <div class="form-footer"></div>
@@ -121,16 +120,17 @@
                         </div>
                         <h3>Groups</h3>
                         <div class="group">
-                            <div class="group-title">Boka Group 1</div>
+                            <div class="group-title">Qoders Group</div>
                             <div class="members">
                                 <ul>
                                     <li class="member" ><span>Nhu Trin</span> <a href="#" class="btn-add-member" data-member-email = "nhutrin@gmail.com">Add</a></li>
+                                    <li class="member" ><span>Binod Gurung</span> <a href="#" class="btn-add-member" data-member-email = "tamu.bnod1@gmail.com">Add</a></li>
                                 </ul>
                             </div>
                             <a href="#" class="btn-add-group" data-group-id="2">Add</a>
                         </div>
                         <div class="group">
-                            <div class="group-title">Kabo Group</div>
+                            <div class="group-title">Pandu Group</div>
                             <div class="members">
                                 <ul>
                                     <li class="member"><span>Binod Gurung</span> <a href="#" class="btn-add-member" data-member-email = "tamu.bnod1@gmail.com">Add</a></li>
