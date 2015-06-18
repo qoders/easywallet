@@ -24,6 +24,10 @@
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/group**"
 			access="isAuthenticated()" />
+		<security:intercept-url pattern="/dashboard/**"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/group/**"
+			access="isAuthenticated()" />
 
 		<security:form-login login-page="/login"
 			default-target-url="/" always-use-default-target="false"
