@@ -13,6 +13,7 @@ public interface UserService {
 	public List<User> findAllUser();
 	public User findUserByUsername(String username);
 	public User findUserByEmail(String email);
+	public List<User> findByUserOrEmail(String q);
 	public String encryptPassword(String password);
 	public void save(User user);
 	

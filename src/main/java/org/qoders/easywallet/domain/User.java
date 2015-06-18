@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -31,22 +33,34 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty(message="can not be empty")
 	@Column(unique=true, length=50, name="username", nullable=false)
+	@JsonIgnore
 	private String username;
 	
+	@NotEmpty(message="can not be empty")
 	@Column(length=255)
+	@JsonIgnore
 	private String password;
 	
+	@NotEmpty(message="can not be empty")
 	@Column(unique=true, length=255, nullable=false)
 	private String email;
 	
+	
 	private String avatar;
+	
+	@NotEmpty(message="can not be empty")
 	private String firstName;
+	
+	@NotEmpty(message="can not be empty")
 	private String lastName;
 	
+	@NotEmpty(message="select gender")
 	private String gender;
 	
 	@OneToMany(fetch=FetchType.EAGER)
+	@JsonIgnore
 	private Set<Authority> authorities;
 	
     private boolean enabled;

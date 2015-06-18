@@ -75,8 +75,8 @@
         <div class="form-wrap">
           
                 <h2>Verification</h2>
-            <p> We have sent verification code to your email.Please go through your email, Enter your verification code  </p>
-           <form:form id="verificationForm" modelAttribute="verificationDetail" name="verificationForm" method="post" action="verifyUser">	
+            <p> We have sent verification code to your email (${email}).Please go through your email. Click  verification link attached in mail  </p>
+           <%-- <form:form id="verificationForm" modelAttribute="verificationDetail" name="verificationForm" method="post" action="verifyUser">	
 	
             <div class="form-body">
                 
@@ -96,7 +96,7 @@
             </div>
             <div class="form-footer"></div>
             
-            </form:form> 
+            </form:form>  --%>
        </div>
     </section>
     <footer>

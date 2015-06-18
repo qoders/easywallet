@@ -82,14 +82,17 @@
                 <div class="form-group">
                     <label for="firstName">First Name</label>
                     <input type="text" name="firstName" class="form-control" id="firstName" placeholder="First Name">
+                    <form:errors path="firstName" cssStyle="color : red;" /><br/>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
                     <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Last Name">
+                    <form:errors path="lastName" cssStyle="color : red;" /><br/>
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
+                    <form:errors path="email" cssStyle="color : red;" /><br/>
                 </div>
                  <div class="form-group">
                     <label for="username">Username</label>
@@ -111,6 +114,7 @@
                         <input type="radio" name="gender" value="F" name="gender"> Female
                     </label>
                 </div>
+                <form:errors path="gender" cssStyle="color : red;" /><br/>
                 <button type="submit" class="btn btn-primary">Signup</button>
             </div>
             <div class="form-footer"></div>

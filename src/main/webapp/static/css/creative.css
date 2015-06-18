@@ -523,3 +523,114 @@ footer p {
     color: #aaa;
     font-size: 13px;
 }
+.receipt .btn {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    margin-top: -16px;
+}
+
+.receipt {
+    position: relative;
+    padding-right: 115px;
+}
+
+div#sidebar {
+    background: #fafafa;
+}
+
+.group,.member {
+    position: relative;
+    padding-right: 55px;
+}
+.group {
+    cursor: pointer;
+}
+.group:hover {
+    background:#eee;
+}
+.group .group-title {
+    font-weight: bold;
+}
+.group .members {
+    display: none;
+}
+.group .members.active {
+    display: block;
+}
+
+.group a.btn-add-group, .member a.btn-add-member {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+.companions span.close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: #FF0000;
+    opacity: 1;
+}
+.companions .name {
+    font-weight: bold;
+    margin: 5px 0px;
+}
+.companions {
+    position: relative;
+}
+.form-group {
+	position:relative;
+}
+.search-result {
+  background: #fff;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  height: 200px;
+  position: absolute;
+  width: 100%;
+  overflow-y: auto;
+  top: 57px;
+  display:none;
+  z-index:100;
+}
+.search-result.show {
+	display:block;
+}
+.search-result ul {
+  list-style: none;
+  padding: 10px 15px;
+}
+.search-result ul li {
+  font-size: 12px;
+  cursor:pointer;
+}
+.search-result ul li:hover {
+  font-size: 13px;
+}
+.search-result ul li span.name {
+  font-weight: 500;
+}
+.search-result ul li span.email {
+  color: #999;
+}
+
+#group-members li {
+  padding: 5px 10px;
+  background: #ddd;
+  border-radius: 5px;
+  position: relative;
+  margin: 5px 0px;
+}
+
+#group-members li span.remove {
+  position: absolute;
+  right: 10px;
+  color: #D32500;
+  cursor:pointer;
+}
+
+ul#group-members {
+  padding: 20px 0px;
+  list-style: none;
+}

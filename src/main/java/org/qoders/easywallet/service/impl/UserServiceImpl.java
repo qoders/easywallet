@@ -45,4 +45,13 @@ public class UserServiceImpl implements UserService {
 		return b.encode(password);
 	}
 
+	@Override
+	public List<User> findByUserOrEmail(String q) {
+		q = "%"+q+"%";
+		return userRepo.getUserByUserOrEmail(q);
+		
+		// TODO Auto-generated method stub
+		//return null;
+	}
+
 }
