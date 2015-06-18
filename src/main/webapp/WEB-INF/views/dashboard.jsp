@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -43,9 +44,9 @@
 	                    <span class="sr-only">Toggle navigation</span>
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
-	                    <span class="icon-bar"></span> 
+	                    <span class="icon-bar"></span>
 	                </button>
-	                <a class="navbar-brand page-scroll" href="<spring:url value="/" />"><span>Easy</span>Wallet</a>
+	                <a class="navbar-brand page-scroll" href="index.html"><span>Easy</span>Wallet</a>
 	            </div>
 				
 				
@@ -84,34 +85,71 @@
 	        <!-- /.container-fluid -->
 	    </nav>
 	    
-	    <section id="login-form-wrap">
-	        <div class="form-wrap">
-	            <form action="<spring:url value="/j_spring_security_check"></spring:url>" method="POST">
-	            <div class="form-heading">
-	                <h2>Login</h2>
-	            </div>
-	            <div class="form-body">
-	            	<c:if test="${not empty error}">
-						<div class="alert alert-danger">
-							${error}
-						</div>
-					</c:if>
-	                <div class="form-group">
-	                    <label for="exampleInputEmail1">Email address</label>
-	                    <input type="text" name="j_username" class="form-control" id="" placeholder="Enter email or username">
-	                </div>
-	                <div class="form-group">
-	                    <label for="exampleInputPassword1">Password</label>
-	                    <input type="password" name="j_password" class="form-control" id="" placeholder="Password">
-	                </div>
-	                <button type="submit" class="btn btn-primary">Login</button>
-	            </div>
-	            <div class="form-footer"></div>
-	            </form>
-	        </div>
-	    </section>
-	    
-	    
+	    <div class="container" style="margin-top: 100px;">
+		    <div class="row">
+		        <div class="col-lg-3 col-sm-4" id="sidebar">
+		            <h2>Dashboard</h2>
+		            <ul class="nav">
+		                <li><a href="/receipt/add">Add Receipt</a></li>
+		                <li><a href="/group">Groups</a></li>
+		                <li><a href="#">Settle Up</a></li>
+		                <li><a href="#">Reminder</a></li>
+		            </ul>
+		        </div>
+		        <div class="col-sm-8 col-lg-9" id="content">
+		            <div class="row">
+		                <div class="col-sm-4">
+		                    <span>Your Total Balance</span>
+		                    <h3><fmt:formatNumber value="${total}" currencySymbol="$"  type="currency"/></h3>
+		                </div>
+		                <div class="col-sm-4">
+		                    <span>You Owe</span>
+		                    <h3><fmt:formatNumber value="${totalOwn}" currencySymbol="$"  type="currency"/></h3>
+		                </div>
+		                <div class="col-sm-4">
+		                    <span>Your are Owed</span>
+		                    <h3><fmt:formatNumber value="${totalHave}" currencySymbol="$" type="currency"/></h3>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <div class="col-sm-12">
+		                    <h2>You own</h2>
+		                    <div class="expenses-list">
+		                    	<c:if test="${empty ownList}">
+		                    		Hurray! you own noone!
+	                    		</c:if>
+		                    	<c:forEach var="comp" items="${ownList}">
+		                        <div class="receipt">
+		                            <div class="title">${comp.receipt}</div>
+		                            <p class="description">${comp.description}</p>
+		                            <span class="receipt-date"><fmt:formatDate type="date" value="${comp.receipt.date }" /></span>
+		                            <a href="#" class="btn btn-primary">Settle Up</a>
+		                        </div>
+		                        </c:forEach>
+		                    </div>
+		                </div>
+		                <div class="col-sm-12">
+		                    <h2>You have</h2>
+		                    <div class="expenses-list">
+		                    	<c:if test="${empty haveList}">
+		                    		Oh c'mon, let go and buy something.
+	                    		</c:if>
+		                        <c:forEach var="comp" items="${haveList}">
+		                        <div class="receipt">
+		                            <div class="title">${comp.receipt}</div>
+		                            <p class="description">${comp.description}</p>
+		                            <span class="receipt-date"><fmt:formatDate type="date" value="${comp.receipt.date }" /></span>
+		                            <a href="#" class="btn btn-primary">Settle Up</a>
+		                        </div>
+		                        </c:forEach>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+
 	    <footer>
 	        <div class="container">
 	            <p>Copyright &copy; 2015. All rights reserved at EasyWallet.com</p>

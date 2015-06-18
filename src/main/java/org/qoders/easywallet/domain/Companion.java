@@ -24,7 +24,7 @@ public class Companion {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Receipt receipt;
 
 	@OneToOne(fetch=FetchType.EAGER)

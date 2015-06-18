@@ -1,6 +1,7 @@
 package org.qoders.easywallet.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,7 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Simple receipt object
@@ -37,6 +41,10 @@ public class Receipt implements Serializable {
 	
 	private Double total;
 	private String imagePath;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+    @Column(name="receipt_date", nullable=false)
+	private Date date;
 	
 	@OneToMany
 	private List<Companion> companions;
@@ -83,5 +91,20 @@ public class Receipt implements Serializable {
 	
 	public void addCompanion(Companion companion){
 		this.companions.add(companion);
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	@PrePersist
+	protected void onCreate() {
+	    this.date = new Date();
+	}
+	
+	public String toString(){
+		return this.title;
 	}
 }

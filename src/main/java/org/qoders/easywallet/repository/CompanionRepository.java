@@ -16,10 +16,11 @@ public interface CompanionRepository extends CrudRepository<Companion, Long>{
 	@Query("SELECT c FROM Companion c WHERE c.companion=:user")
 	public List<Companion> findAllByUser(@Param("user") User user);
 	
-	@Query("SELECT c FROM Companion c WHERE c.owner=:user AND c.settle is true")
+	@Query("SELECT c FROM Companion c WHERE c.owner=:user AND c.settle is false")
 	public List<Companion> findNotSettleByOwner(@Param("user") User user);
 	
-	@Query("SELECT c FROM Companion c WHERE c.companion=:user AND c.settle is true")
+	@Query("SELECT c FROM Companion c WHERE c.companion=:user AND c.settle is false")
 	public List<Companion> findNotSettleByUser(@Param("user") User user);
+	
 	
 }
