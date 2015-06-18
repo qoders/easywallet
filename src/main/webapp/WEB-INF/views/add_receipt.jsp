@@ -70,6 +70,7 @@
                                     <label for="">Title</label>
                                     <input type="text" class="form-control" name="title" id="title" placeholder="eg. Mashu Bhaat Party">
                                 </div>
+                                <input type="hidden" class="form-control" name="imagePath" id="imagePath" placeholder="">
                                 <div class="form-group">
                                     <label for="">Total</label>
                                     <input type="text" class="form-control" name="total" id="total" placeholder="">
@@ -103,6 +104,17 @@
 
                 </div>
                 <div class="col-sm-6">
+                	<div class="form-wrap add-companions" style="margin:20px 0px;">
+                		<div class="form-heading">
+                            <h2>Upload Receipt</h2>
+                        </div>
+                        <div class="group">
+                        	<input id="fileupload" type="file" name="file" data-url="/api/upload" data-form-data='{"path": "receipt"}'>
+                        </div>
+                        <div class="group imgHolder">
+                        	
+                        </div>
+                	</div>
                     <div class="form-wrap add-companions" style="margin:20px 0px;">
                         <div class="form-heading">
                             <h2>Add Companions to the Receipt</h2>
@@ -155,7 +167,35 @@
 		<!-- Custom Theme JavaScript -->
    		<script src="<spring:url value="/static/js/creative.js" />"></script>
    		<script src="<spring:url value="/static/js/scripts.js" />"></script>
-
+		
+		<script src="<c:url value="/static/js/jquery.ui.widget.js"/>"></script>
+		<script src="<c:url value="/static/js/jquery.iframe-transport.js"/>"></script>
+		<script src="<c:url value="/static/js/jquery.fileupload.js"/>"></script>
+		
+		<script>
+		$(function () {
+		    $('#fileupload').fileupload({
+		        dataType: 'json',
+		        done: function (e, data) {
+		        	var url = data.result.path + data.result.thumbnail;
+		        	$('.imgHolder').html('');
+		        	var status=$('<span>Please wait <img src="/static/img/loading.gif" alt="loading" style="height:20px;width:20px"/></span>');
+		        	$('<img class="thumbnail img-responsive"/>').attr('src',url).appendTo('.imgHolder');
+		        	$('.imgHolder').prepend(status);
+		        	$.post("/api/receipt/scan", {"receiptPath":"Temp_User_Dir/"+data.result.filename}, function(data){
+		        		if(data.total){
+		        			$("input[name='total']").val(data.total);
+		        			$("input[name='title']").val(data.title);
+		        			$("textarea[name='description']").val(data.description);
+		        		}
+		        		status.remove();
+		        	}).error(function(){
+		        		status.remove();
+		        	});
+		        }
+		    });
+		});
+		</script>
 </body>
 
 </html>

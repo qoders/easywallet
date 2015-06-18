@@ -46,7 +46,7 @@ public class FileUploadController {
 				String userDirs = "Temp_User_Dir";
 				String returnPath = "/media/receipts/" + userDirs + "/";
 				String fullPath = ROOT_PATH + returnPath;
-				String fileName = UUID.randomUUID().toString();
+				String fileName = UUID.randomUUID().toString() + ".jpg";
 				try{
 					File dir = new File(fullPath);
 					if (!dir.exists()){
