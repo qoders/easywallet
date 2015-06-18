@@ -10,6 +10,7 @@ import org.qoders.easywallet.domain.Companion;
 import org.qoders.easywallet.domain.Group;
 import org.qoders.easywallet.domain.Receipt;
 import org.qoders.easywallet.domain.User;
+import org.qoders.easywallet.service.CompanionService;
 import org.qoders.easywallet.service.GroupService;
 import org.qoders.easywallet.service.ReceiptService;
 import org.qoders.easywallet.service.UserService;
@@ -34,10 +35,19 @@ public class ReceiptController {
 	@Autowired
 	ReceiptService receiptService;
 	
+	@Autowired
+	GroupService groupService;
+	
+	@Autowired
+	CompanionService compService;
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET )
 	public String addReceipt(Model model)
 	{
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User)authentication.getPrincipal();
+		List<Group> groups = groupService.findGroupByUser(user);
+		model.addAttribute("groups", groups);
 		return "add_receipt";
 		
 	}
@@ -62,11 +72,14 @@ public class ReceiptController {
 			User cUser = userService.findUserByEmail(email);
 			c.setCompanion(cUser);
 			c.setOwner(user);
-			
-			
 		} 
 		newreceipt.setCompanions(compList);
 		receiptService.createReceipt(newreceipt);
+		
+		for (Companion c : newreceipt.getCompanions()) {
+			c.setReceipt(newreceipt);
+			compService.save(c);
+		} 
 		
 		// get all groups owned or member of that group
 		//redirect.addFlashAttribute("groupList", groupList);

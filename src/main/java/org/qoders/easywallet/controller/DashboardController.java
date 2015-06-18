@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Dashboard
+ * Dashboard, reminder
  * @author Nhu Trinh
  *
  */
@@ -30,6 +30,11 @@ public final class DashboardController {
 	@Autowired
 	CompanionService comService;
 	
+	/**
+	 * Root page of dashboard, Calculate total amount
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public String dashboard(Model model){
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -50,6 +55,12 @@ public final class DashboardController {
 		return "dashboard";
 	}
 	
+	/**
+	 * Rest method to settle up an companion payment
+	 * @param model
+	 * @param c_id
+	 * @return
+	 */
 	@RequestMapping(value="/removeCompanion", method=RequestMethod.POST)
 	public @ResponseBody Map <String, String> removeCompanion (Model model, @RequestParam(value="companion_id") long c_id) {
 		

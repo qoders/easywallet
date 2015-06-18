@@ -1,0 +1,9 @@
+org.hashids
+org.qoders.easywallet.controller
+org.qoders.easywallet.domain
+org.qoders.easywallet.repository
+org.qoders.easywallet.restcontroller
+org.qoders.easywallet.service
+org.qoders.easywallet.service.impl
+org.qoders.exception
+org.qoders.exception.handler
