@@ -30,7 +30,7 @@
 			access="isAuthenticated()" />
 
 		<security:form-login login-page="/login"
-			default-target-url="/" always-use-default-target="false"
+			default-target-url="/dashboard" always-use-default-target="false"
 			authentication-failure-handler-ref="authenticationFailureHandler" />
 		<security:logout logout-success-url="/loggedout"
 			logout-url="/logout" />
