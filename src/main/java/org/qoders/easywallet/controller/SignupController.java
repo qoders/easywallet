@@ -41,6 +41,16 @@ public class SignupController {
 		{
 			return "signup";	
 		}
+		User existUser = userservice.findUserByEmail(user.getEmail());
+		if (existUser != null){
+			result.rejectValue("email", "error.user", "An account already exists for this email.");
+			return "signup";
+		}
+		existUser = userservice.findUserByUsername(user.getUsername());
+		if (existUser != null){
+			result.rejectValue("username", "error.user", "An account already exists for this username.");
+			return "signup";
+		}
 		user.setPassword(userservice.encryptPassword(user.getPassword()));
 		
 		userservice.save(user);
