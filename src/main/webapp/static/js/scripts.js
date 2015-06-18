@@ -134,4 +134,29 @@ $(function () {
     	$(this).parent().remove();
     })
     
+    $(document).on('click','.btn-settle-up',function () {
+    	var companion_id = $(this).attr('data-companion');
+    	var data = "companion_id="+companion_id;
+    	var url = '/dashboard/removeCompanion';
+    	$.ajax({
+    		url: url,
+    		type: 'POST',
+    		data: data,
+    		dataType:'JSON',
+    		beforeSend:function () {
+    			//do something before sending request
+    		},
+    		success:function (data) {
+    			//console.log(response);
+    			if (data.response == 'success') {
+    				location.reload();
+    			}
+    			
+    		},
+    		complete:function () {
+    			//do something after completion of request
+    		}
+    	});
+    })
+    
 });
