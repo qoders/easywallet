@@ -1,6 +1,8 @@
 package org.qoders.easywallet.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.qoders.easywallet.domain.Companion;
 import org.qoders.easywallet.domain.User;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Dashboard
@@ -46,5 +50,17 @@ public final class DashboardController {
 		return "dashboard";
 	}
 	
+	@RequestMapping(value="/removeCompanion", method=RequestMethod.POST)
+	public @ResponseBody Map <String, String> removeCompanion (Model model, @RequestParam(value="companion_id") long c_id) {
+		
+		Companion comp = comService.getCompanionByCompanionId(c_id);
+		
+		comp.setSettle(true);
+		comService.save(comp);
+		Map <String, String> result = new HashMap<String, String>();
+		result.put("response", "success");
+		return result;
+		
+	}
 	
 }

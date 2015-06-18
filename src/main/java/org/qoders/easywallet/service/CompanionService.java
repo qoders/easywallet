@@ -21,7 +21,10 @@ public interface CompanionService {
 	public List<Companion> findAllByUser(User user);
 	public List<Companion> findActiveByUser(User user);
 	
+	public Companion getCompanionByCompanionId(long id);
 	public Double getTotalUserHave(User user);
 	public Double getTotalUserOwn(User user);
 	public Double getTotalAmount(List<Companion> companions);
+	public void deleteCompanion(Companion comp);
+	public void save(Companion comp);
 }

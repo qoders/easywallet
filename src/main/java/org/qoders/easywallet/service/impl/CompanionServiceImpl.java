@@ -67,4 +67,22 @@ public class CompanionServiceImpl implements CompanionService {
 		return null;
 	}
 
+	@Override
+	public Companion getCompanionByCompanionId(long id) {
+		// TODO Auto-generated method stub
+		Companion comp = companionRepo.findOne(id);
+		
+		return comp;
+	}
+	
+	public void deleteCompanion(Companion comp) {
+		companionRepo.delete(comp);
+	}
+
+	@Override
+	public void save(Companion comp) {
+		companionRepo.save(comp);
+		
+	}
+
 }

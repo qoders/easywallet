@@ -95,8 +95,10 @@
 		        <div class="col-lg-3 col-sm-4" id="sidebar">
 		            <h2>Dashboard</h2>
 		            <ul class="nav">
+		            <li><a href="/dashboard">Dashboard</a></li>
 		                <li><a href="/receipt/add">Add Receipt</a></li>
-		                <li><a href="/group">Groups</a></li>
+				        <li><a href="/group/add">Create Group</a></li>
+				        <li><a href="/group/">My Groups</a></li>
 		                <li><a href="#">Settle Up</a></li>
 		                <li><a href="#">Reminder</a></li>
 		            </ul>
@@ -144,7 +146,7 @@
 		                            <div class="title">${comp.receipt}</div>
 		                            <p class="description">${comp.description}</p>
 		                            <span class="receipt-date"><fmt:formatDate type="date" value="${comp.receipt.date }" /></span>
-		                            <a href="#" class="btn btn-primary">Settle Up</a>
+		                            <a href="#" class="btn btn-primary btn-settle-up" data-companion="${comp.id}" onclick="confirm('Are you sure you want to settle this expense?')">Settle Up</a>
 		                        </div>
 		                        </c:forEach>
 		                    </div>
@@ -174,5 +176,6 @@
 	    <script src="<spring:url value="/static/js/wow.min.js" />"></script>
 		<!-- Custom Theme JavaScript -->
    		<script src="<spring:url value="/static/js/creative.js" />"></script>
+   		<script src="<spring:url value="/static/js/scripts.js" />"></script>
 	</body>
 </html>

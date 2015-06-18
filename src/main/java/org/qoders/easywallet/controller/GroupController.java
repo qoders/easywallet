@@ -80,7 +80,7 @@ public class GroupController {
 		
 	}
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value="", method=RequestMethod.GET)
 	public String listGroup(Model model, @ModelAttribute (value="newgroup") Group newgroup)
 	{
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

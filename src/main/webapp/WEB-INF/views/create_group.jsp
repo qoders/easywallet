@@ -102,8 +102,10 @@
         <div class="col-lg-3 col-sm-4" id="sidebar">
             <h2>Dashboard</h2>
             <ul class="nav">
-                <li><a href="#">Add Bill</a></li>
-                <li><a href="#">Create Group</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/receipt/add">Add Receipt</a></li>
+		        <li><a href="/group/add">Create Group</a></li>
+		        <li><a href="/group/">My Groups</a></li>
                 <li><a href="#">Settle Up</a></li>
                 <li><a href="#">Reminder</a></li>
             </ul>
