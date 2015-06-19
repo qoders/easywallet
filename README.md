@@ -36,3 +36,4 @@ mail.smtp.starttls.enable=
 mail.debug=
 ```
 
+**Change project context path to `/` instead of `easywallet`
