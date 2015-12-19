@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="easywallet:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="easywallet-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="easywallet:war exploded" />
+    </root>
+  </artifact>
+</component>
